@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Core.Interfaces;
+using API.Core.Specifications;
 
 namespace API.Controllers
 {
@@ -39,7 +40,8 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            var data = await _productRepository.ListAllAsync();
+            var spec = new ProductsWithProductTypeAndBrandsSpecification();
+            var data = await _productRepository.ListAllSpecAsync(spec);
             return Ok(data);
         }
 

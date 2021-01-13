@@ -1,4 +1,5 @@
 ﻿using API.Core.DbModels;
+using API.Core.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,8 @@ namespace API.Core.Interfaces
     public interface IGenericRepository<T> where T:BaseEntity
     {
         Task<T> GetByIdAsync(int id);
-        Task<IReadOnlyList<T>> ListAllAsync(); 
+        Task<IReadOnlyList<T>> ListAllAsync();
+        Task<T> GetEntityWithSpec(ISpecification<T> spec);
+        Task<IReadOnlyList<T>> ListAllSpecAsync(ISpecification<T> spec);
     }
 }
